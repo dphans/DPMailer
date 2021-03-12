@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from os import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xgc_@_0alwg-_gqi#cfpdg3ht3wpeu#h3!2e-2gt9f*dz_g5^$'
+SECRET_KEY = environ.get('SECRET_KEY', 'xgc_@_0alwg-_gqi#cfpdg3ht3wpeu#h3!2e-2gt9f*dz_g5^$')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(environ.get('DEBUG_MODE', '0')))
 
 ALLOWED_HOSTS = []
 
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = environ.get('TIME_ZONE', 'UTC')
 
 USE_I18N = True
 
